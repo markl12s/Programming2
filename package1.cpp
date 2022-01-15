@@ -17,6 +17,9 @@ int main(){
     cout << totalSize;
 }
 
-int total_size(length, width, height){totalSize = length * width * height;
+int total_size(length, width, height){
+    totalSize = length * width * height;
     return totalSize;
 }
+
+// create function to return array of user input of weight, length width and height
