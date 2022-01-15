@@ -12,10 +12,10 @@ bool compare(int total, int target);
 
 int main() {
     // variables
-    int weight;
-    int length;
-    int width;
-    int height;
+    int weight = 1;
+    int length = 2;
+    int width = 3;
+    int height = 4;
 
     int totalSize;
     bool tooBig;
