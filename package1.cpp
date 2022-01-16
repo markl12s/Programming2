@@ -15,6 +15,7 @@
 
 #include <iostream>
 #include <iomanip>
+#include <string>
 
 using namespace std;
 
@@ -27,6 +28,7 @@ void get_input(int& weight, int& length, int& width, int& height);
 int calculate_size(int length, int width, int height);
 bool compare(int total, int target);
 int how_much_overload(int total, int target);
+void print_output(bool tooBig, bool tooHeavy, int overSizeTot, int overWeightTot);
 
 int main() {
     // variables
@@ -50,6 +52,8 @@ int main() {
 
     overWeightTot = how_much_overload(weight, MAXIMUM_WEIGHT);
     overSizeTot = how_much_overload(totalSize, MAXIMUM_SIZE);
+
+    print_output(tooBig, tooHeavy, overSizeTot, overWeightTot);
 }
 
 void get_input(int& weight, int& length, int& width, int& height) {
@@ -73,11 +77,36 @@ int calculate_size(int length, int width, int height) {
 }
 
 bool compare(int total, int target) {
-    if (total < target) { return true; }
+    if (total >= target) { return true; }
     else { return false; }
 }
 
 int how_much_overload(int total, int target) {
-    if (total > target) { return target - total; }
+    if (total > target) { return total - target; }
     else { return 0; }
+}
+
+void print_output(bool tooBig, bool tooHeavy, int overSizeTot, int overWeightTot) {
+    string message = "";
+    int changes = 0;
+    string overSizeString = to_string(overSizeTot);
+    string overWeightString = to_string(overWeightTot);
+    
+    if ( tooHeavy == true ) {
+        message = "Package is " + overSizeString + " oversized \n";
+        changes += 1;
+    }
+    else { message = "package is within weight"; }
+
+    if ( tooBig == true ) {
+        message += "Package is " + overWeightString + " overweight \n";
+        changes += 1;
+    }
+    else { message += "package is within size limits \n"; }
+
+    if (changes == 0) {
+        message = "Ship package.";
+    }
+
+    cout << message;
 }
