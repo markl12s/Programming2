@@ -54,6 +54,8 @@ int main() {
     overSizeTot = how_much_overload(totalSize, MAXIMUM_SIZE);
 
     print_output(tooBig, tooHeavy, overSizeTot, overWeightTot);
+
+    return 0;
 }
 
 void get_input(int& weight, int& length, int& width, int& height) {
@@ -96,7 +98,7 @@ void print_output(bool tooBig, bool tooHeavy, int overSizeTot, int overWeightTot
         message = "Package is " + overSizeString + " oversized \n";
         changes += 1;
     }
-    else { message = "package is within weight"; }
+    else { message = "package is within weight \n"; }
 
     if ( tooBig == true ) {
         message += "Package is " + overWeightString + " overweight \n";
