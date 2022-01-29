@@ -30,9 +30,6 @@ const bool TESTING = false;
 const int MAXIMUM_SIZE = 10;
 const double MAXIMUM_WEIGHT = 99.9;
 
-// misc
-int i = 0;
-
 // functions
 void get_input(double& weight, int& length, int& width, int& height);
 int calculate_volume(int length, int width, int height);
@@ -42,8 +39,9 @@ void print_output(bool tooBig, bool tooHeavy, double overSizeTot, double overWei
 
 //
 // main loop
-//Make this loop
-int main() {
+//
+int main() { 
+    int i = 0;
     while (i < i + 1) {
         // size variables 
         double weight = 1;
@@ -86,10 +84,10 @@ void get_input(double& weight, int& length, int& width, int& height) {
     * post: weight, length, width and height are entered by user
     * 
     * inputs
-    * @weight: the weight of the package
-    * @length: the length of the package
-    * @width : the width of the package
-    * @height: the height of the package
+    * @Weight: the weight of the package
+    * @Length: the length of the package
+    * @Width : the width of the package
+    * @Height: the height of the package
     */
 
     cout << "Please input the weight  : ";
@@ -107,10 +105,10 @@ void get_input(double& weight, int& length, int& width, int& height) {
 
     /*
     * outputs
-    * @weight: the weight of the package
-    * @length: the length of the package
-    * @width: the width of the package
-    * @height: the height of the package
+    * @Weiht: the weight of the package
+    * @Length: the length of the package
+    * @Width: the width of the package
+    * @Height: the height of the package
     */
 }
 
@@ -127,6 +125,9 @@ int calculate_volume(int length, int width, int height) {
 
 bool compare(double total, double target) {             // do pre/post conditions
     /*
+    * pre: total and target are doubles
+    * post: tells whether total > target
+    * 
     * inputs
     * @total: the number you are comparing
     * @target: the number you are comparing to
@@ -143,6 +144,10 @@ bool compare(double total, double target) {             // do pre/post condition
 
 double how_much_overload(double total, double target) {
     /*
+    * pre: total and target are both doubles
+    * post: how much  bigger total is than target 
+    * if it returns -42 that means total > target, should never print out that
+    *
     * inputs
     * @total: the number you are comparing
     * @target: the number you are comparing to
@@ -167,7 +172,11 @@ double how_much_overload(double total, double target) {
 }
 
 void print_output(bool tooBig, bool tooHeavy, double overSizeTot, double overWeightTot) {
-    /* inputs
+    /*
+    * pre: checked if package is too big or too heavy, and know how much to big/heavy it is
+    * post: printed out results for user
+    * 
+    * inputs
     * @tooBig: whether or not the package is too big
     * @tooHeavy: whether or not the package is too heavy
     * @overSizeTot:
@@ -177,25 +186,23 @@ void print_output(bool tooBig, bool tooHeavy, double overSizeTot, double overWei
     int changes = 0;
     string overSizeString = to_string(overSizeTot);
     string overWeightString = to_string(overWeightTot);
-    
-    // test if too heavy
+
+    cout << "PACKAGE INFORMATION" << endl;
+
     if (TESTING) {
         cout << "is too heavy : " << tooHeavy << endl;
     }
 
-    // print how heavy it is
     if (tooHeavy == true) {
         message = "Package is " + overWeightString + " oversized \n";
         changes += 1;
     }
     else { message = "package is within weight \n"; }
     
-    // test if too big
     if (TESTING) {
         cout << "is too big : " << tooBig << endl;
     }
     
-    // print how heavy it is
     if (tooBig) {
         message += "Package is " + overSizeString + " overweight \n";
         changes += 1;
@@ -203,7 +210,7 @@ void print_output(bool tooBig, bool tooHeavy, double overSizeTot, double overWei
     else { message += "package is within size limits \n"; }
 
     if (changes == 0) {
-        message = "Ship package.";
+        message = "Ship Package.";
     }
 
     cout << message;
