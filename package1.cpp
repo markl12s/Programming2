@@ -30,6 +30,9 @@ const bool TESTING = false;
 const int MAXIMUM_SIZE = 10;
 const double MAXIMUM_WEIGHT = 99.9;
 
+// misc
+int i = 0;
+
 // functions
 void get_input(double& weight, int& length, int& width, int& height);
 int calculate_volume(int length, int width, int height);
@@ -41,33 +44,36 @@ void print_output(bool tooBig, bool tooHeavy, double overSizeTot, double overWei
 // main loop
 //Make this loop
 int main() {
-    // size variables 
-    double weight = 1;
-    int length = 1;
-    int width = 1;
-    int height = 1;
+    while (i < i + 1) {
+        // size variables 
+        double weight = 1;
+        int length = 1;
+        int width = 1;
+        int height = 1;
 
-    // final sizes
-    int totalSize;
-    int overWeightTot;
-    int overSizeTot;
+        // final sizes
+        int totalSize;
+        int overWeightTot;
+        int overSizeTot;
 
-    // within limits
-    bool tooBig;
-    bool tooHeavy;
+        // within limits
+        bool tooBig;
+        bool tooHeavy;
 
-    get_input(weight, length, width, height);
+        get_input(weight, length, width, height);
 
-    totalSize = calculate_volume(length, width, height);
+        totalSize = calculate_volume(length, width, height);
 
-    tooBig = compare(totalSize, MAXIMUM_SIZE);
-    tooHeavy = compare(weight, MAXIMUM_WEIGHT);
+        tooBig = compare(totalSize, MAXIMUM_SIZE);
+        tooHeavy = compare(weight, MAXIMUM_WEIGHT);
 
-    overWeightTot = how_much_overload(weight, MAXIMUM_WEIGHT);
-    overSizeTot = how_much_overload(totalSize, MAXIMUM_SIZE);
+        overWeightTot = how_much_overload(weight, MAXIMUM_WEIGHT);
+        overSizeTot = how_much_overload(totalSize, MAXIMUM_SIZE);
 
-    print_output(tooBig, tooHeavy, overSizeTot, overWeightTot);
+        print_output(tooBig, tooHeavy, overSizeTot, overWeightTot);
 
+        cout << endl << endl;
+    }
     return 0;
 }
 
@@ -143,7 +149,7 @@ double how_much_overload(double total, double target) {
     */
    
     // compare total to target
-    if (TESTING == true) {
+    if (TESTING) {
         cout << "total  : " << total << endl;
         cout << "target : " << target << endl;
     }
@@ -173,7 +179,7 @@ void print_output(bool tooBig, bool tooHeavy, double overSizeTot, double overWei
     string overWeightString = to_string(overWeightTot);
     
     // test if too heavy
-    if (TESTING == true) {
+    if (TESTING) {
         cout << "is too heavy : " << tooHeavy << endl;
     }
 
@@ -185,12 +191,12 @@ void print_output(bool tooBig, bool tooHeavy, double overSizeTot, double overWei
     else { message = "package is within weight \n"; }
     
     // test if too big
-    if (TESTING == true) {
+    if (TESTING) {
         cout << "is too big : " << tooBig << endl;
     }
     
     // print how heavy it is
-    if (tooBig == true) {
+    if (tooBig) {
         message += "Package is " + overSizeString + " overweight \n";
         changes += 1;
     }
