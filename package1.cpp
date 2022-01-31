@@ -7,15 +7,11 @@
 *
 * description : compute package size
 *
-*  comments : methods and a function with parameters
-*  style notes : variables camel case, functions snake case, constants upper snake case
+* comments : methods and a function with parameters
+* style notes : variables camel case, functions snake case, constants upper snake case
 *
 * last modified: 15 Jan 2022
 */
-
-
-// make this looped
-// write pre and post conditions
 
 #include <iostream>
 #include <iomanip>
@@ -23,7 +19,7 @@
 
 using namespace std;
 
-// developer tools
+// development tools
 const bool TESTING = false;
 
 // constants
@@ -59,6 +55,7 @@ int main() {
         bool tooHeavy;
 
         get_input(weight, length, width, height);
+        if (weight == -1) { break; }
 
         totalSize = calculate_volume(length, width, height);
 
@@ -90,22 +87,26 @@ void get_input(double& weight, int& length, int& width, int& height) {
     * @Height: the height of the package
     */
 
+    cout << "In order to exit put -1 as weight." << endl;
     cout << "Please input the weight  : ";
     cin >> weight;
     cout << endl;
 
-    cout << "Please input the length  : ";
-    cin >> length;
+    if (weight != -1) {
+        cout << "Please input the length  : ";
+        cin >> length;
 
-    cout << "Please input the width   : ";
-    cin >> width;
+        cout << "Please input the width   : ";
+        cin >> width;
 
-    cout << "Please input the height  : ";
-    cin >> height;
+        cout << "Please input the height  : ";
+        cin >> height;
+        cout << endl;
+    }
 
     /*
     * outputs
-    * @Weiht: the weight of the package
+    * @Weight: the weight of the package
     * @Length: the length of the package
     * @Width: the width of the package
     * @Height: the height of the package
@@ -123,7 +124,7 @@ int calculate_volume(int length, int width, int height) {
     return finalSize;    
 }
 
-bool compare(double total, double target) {             // do pre/post conditions
+bool compare(double total, double target) {
     /*
     * pre: total and target are doubles
     * post: tells whether total > target
@@ -146,7 +147,7 @@ double how_much_overload(double total, double target) {
     /*
     * pre: total and target are both doubles
     * post: how much  bigger total is than target 
-    * if it returns -42 that means total > target, should never print out that
+    * if it returns -42 that means total > target, should never print out that, that is mostly a debuggins tool
     *
     * inputs
     * @total: the number you are comparing
@@ -154,14 +155,12 @@ double how_much_overload(double total, double target) {
     */
    
     // compare total to target
-    if (TESTING) {
+    if (TESTING) { 
         cout << "total  : " << total << endl;
         cout << "target : " << target << endl;
     }
 
-    if (total > target) {
-        return total - target;
-    }
+    if (total > target) { return total - target; }
     else { return -42; }
 
     /* output
@@ -183,35 +182,29 @@ void print_output(bool tooBig, bool tooHeavy, double overSizeTot, double overWei
     */
 
     string message = "";
-    int changes = 0;
     string overSizeString = to_string(overSizeTot);
     string overWeightString = to_string(overWeightTot);
 
     cout << "PACKAGE INFORMATION" << endl;
 
-    if (TESTING) {
-        cout << "is too heavy : " << tooHeavy << endl;
-    }
+    if (TESTING) { cout << "is too heavy : " << tooHeavy << endl; }
 
-    if (tooHeavy == true) {
+    int changes = 0;
+    if (tooHeavy) {
         message = "Package is " + overWeightString + " oversized \n";
-        changes += 1;
+        ++changes;
     }
     else { message = "package is within weight \n"; }
     
-    if (TESTING) {
-        cout << "is too big : " << tooBig << endl;
-    }
+    if (TESTING) { cout << "is too big : " << tooBig << endl; }
     
     if (tooBig) {
         message += "Package is " + overSizeString + " overweight \n";
-        changes += 1;
+        ++changes;
     }
     else { message += "package is within size limits \n"; }
 
-    if (changes == 0) {
-        message = "Ship Package.";
-    }
+    if (changes == 0) { message = "Ship Package"; }
 
     cout << message;
 }
