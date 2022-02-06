@@ -18,6 +18,7 @@ FINAL:  35/50
 
 Algorithm: corrected and better
 Module Interface Chart: not changed and very difficult to read, but the right idea
+note to self: make sure to improve this next time, especially if he is giving this indept feedback
 Code:
 
 I put in debugging so you can see how to solve your issues.
