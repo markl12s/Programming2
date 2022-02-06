@@ -87,6 +87,7 @@ int main() {
         bool tooHeavy;
 
         // break is bad programming
+        // maybe create get_weight and get_size as seperate functions
         get_input(weight, length, width, height);
         if (weight == -1) { break; }
 
